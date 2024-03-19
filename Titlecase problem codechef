@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<string> wordfunction(string s) {
+    vector<string> ans;
+    int n = s.size(), start = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i] == ' ' || i == n - 1) {
+            string word = "";
+            while (start <= i&&s[start]!=' ') {
+                word += s[start++];
+            }
+            ans.push_back(word);
+            start = i + 1;
+        }
+    }
+    return ans;
+}
+
+string titlecase(string s) {
+    int n = s.size();
+    string ans = "";
+    if (s[0] >= 'A' && s[0] <= 'Z') {
+        ans += s[0];
+    } else {
+        ans += s[0] - 'a' + 'A';
+    }
+    for (int i = 1; i < n; i++) {
+        if (s[i] >= 'a' && s[i] <= 'z') {
+            ans += s[i];
+        } else {
+            ans += s[i] - 'A' + 'a';
+        }
+    }
+    return ans;
+}
+
+bool isallcapital(string s) {
+    int n = s.size();
+    for (int i = 0; i < n; i++) {
+        if (s[i] >= 'a' && s[i] <= 'z') {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore(); // To consume the newline character left in the input stream
+    while (t--) {
+        string s, ans = "";
+        getline(cin, s);
+        vector<string> s1 = wordfunction(s);
+        int n = s1.size();
+        for (int i = 0; i < n; i++) {
+            if (isallcapital(s1[i])) {
+                ans += s1[i];
+            } else {
+                ans += titlecase(s1[i]);
+            }
+            ans += " ";
+        }
+        cout << ans << endl;
+    }
+}
