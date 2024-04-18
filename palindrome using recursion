@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+int palindrome(string s,int front,int back){
+    if(front>=back)return 1;
+    if(s[front]!=s[back])return 0;
+    return palindrome(s,front+1,back-1);
+}
+int main()
+{
+    string s="asdfghjklllllllkjhgfdsa";
+    int n=s.size()-1;
+    cout<<palindrome(s,0,n);
+
+    return 0;
+}
