@@ -1,0 +1,26 @@
+vector<string> weightedUniformStrings(string s, vector<int> queries) {
+vector<int>v;
+map<int,int>m;
+int count=1;
+for(int i=0;i<s.size();i++){
+    v.push_back(s[i]-'a'+1);
+    if(i>0&&s[i-1]==s[i]){
+        count++;
+        m[count*(s[i]-'a'+1)]=1;
+    }
+    else {
+        count=1;
+        m[s[i]-'a'+1]=1;
+    }
+}
+vector<string>ans;
+for(int i=0;i<queries.size();i++){
+    bool contain=false;
+    
+    if(m[queries[i]]!=0)contain=true;
+    if(contain)ans.push_back("Yes");
+    else ans.push_back("No");
+}
+return ans;
+}
+
