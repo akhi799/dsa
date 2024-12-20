@@ -1,0 +1,14 @@
+class Solution:
+    def readBinaryWatch(self, turnedOn: int) -> List[str]:
+#the no. of led on can be counted by the no. of  1 in the binary representation of turnedOn integer
+        def countbinary(x):
+            return bin(x).count('1')
+        times=[]
+        for h in range(12):
+            for m in range(60):
+                if countbinary(h)+countbinary(m)==turnedOn:
+                    times.append(f"{h}:{m:02d}")
+        
+        return times
+
+        
